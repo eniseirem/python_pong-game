@@ -34,6 +34,36 @@ ball.color("white")
 ball.penup()
 ball.goto(0,0)
 
+# Functions
+
+def paddle_a_up(): #coordinat y increases
+    y = paddle_a.ycor()
+    y += 20
+    paddle_a.sety(y)
+
+def paddle_a_down(): #coordinat y decreases
+    y = paddle_a.ycor()
+    y -= 20
+    paddle_a.sety(y)
+
+def paddle_b_up(): #coordinat y increases
+    y = paddle_b.ycor()
+    y += 20
+    paddle_b.sety(y)
+
+def paddle_b_down(): #coordinat y increases
+    y = paddle_b.ycor()
+    y -= 20
+    paddle_b.sety(y)
+
+
+# Keyboard Bindings
+wn.listen()
+wn.onkeypress(paddle_a_up,"w")
+wn.onkeypress(paddle_a_down,"s")
+
+wn.onkeypress(paddle_b_up,"Up")
+wn.onkeypress(paddle_b_down,"Down")
 
 #main game loop
 while True:

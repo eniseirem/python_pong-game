@@ -73,22 +73,27 @@ wn.onkeypress(paddle_b_down,"Down")
 while True:
     wn.update()
 
+    # border
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball_dy = int(-1)*float(ball.dy)
+    elif ball.ycor() < -290:
+        ball.sety(-290)
+        ball_dy = int(-1)*float(ball.dy)
+    if ball.xcor() > 350:
+        ball.goto(0,0)
+        ball.dx *= -1
+    elif ball.xcor() < -350:
+        ball.goto(0,0)
+        ball.dx *= -1
+
     #move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.xcor() + ball.dy)
 
-    # border
-    if ball.ycor() > 290:
-        ball.sety(290)
-        ball.dy *= -1
-    if ball.ycor() < 290:
-        ball.sety(-290)
-        ball.dy *= -1
-    if ball.xcor() > 390:
-        ball.goto(0,0)
+    # paddle and ball collisions
+
+    if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
         ball.dx *= -1
-    if ball.xcor() < -390:
-        ball.goto(0,0)
-        ball.dy *= -1
-
-
+    elif ball.xcor() > 340 and ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50:
+        ball.dx *= -1
